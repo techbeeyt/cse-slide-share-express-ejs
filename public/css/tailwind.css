@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  :root {
+    --bg-primary: #111827;
+    --bg-secondary: #1f2937;
+  }
+}
+
+
+body,
+.bg-primary {
+  background-color: var(--bg-primary);
+  color: aliceblue;
+}
+
+.bg-secondary {
+  background-color: var(--bg-secondary);
+  color: aliceblue;
+}
+.hover\:bg-secondary:hover {
+  background-color: var(--bg-secondary);
+}
+
+.page-container {
+  @apply pl-[100px] pt-[80px]
+}
+
+.page-area {
+  height: calc(100vh - 80px);
+  overflow: auto;
+}
+
+.page-container .page-area::-webkit-scrollbar,
+.page-container .page-area::-moz-scrollbar {
+  width: 12px;
+}
+
+.page-container .page-area::-webkit-scrollbar-track,
+.page-container .page-area::-moz-scrollbar-track {
+  background-color: #303c4e;
+}
+
+.page-container .page-area::-webkit-scrollbar-thumb,
+.page-container .page-area::-moz-scrollbar-thumb {
+  background-color: #4a576b;
+  border-radius: 30px;
+}
+
+.page-area.flat {
+  background-color: var(--bg-secondary);
+}
+
+.page-area.gradient-circular {
+  background: radial-gradient(#1f2937, #111827, #111827, #111827);
+}
+
+.page-area.gradient-to-b,
+.gradient-to-b {
+  @apply bg-gradient-to-b from-[#1f2937] to-[#111827]
+}
+
+button:disabled {
+  @apply opacity-60 cursor-not-allowed;
+}
+
+.btn-primary {
+  @apply bg-indigo-500 text-white px-4 py-2 rounded-md hover:outline hover:outline-4 hover:outline-indigo-400/50 active:scale-95;
+}
+
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+#left-bar-icons a {
+  @apply w-10 h-10 rounded-full hover:bg-gray-400/40 flex justify-center items-center
+}
+
+#left-bar-icons a img {
+  @apply w-6 h-6
+}
+
+.footer {
+  background-image: url('../assets/backgrounds/wave-bottom.png');
+  @apply w-full md:min-h-[35vh] bg-no-repeat bg-top bg-cover text-white/80;
+}

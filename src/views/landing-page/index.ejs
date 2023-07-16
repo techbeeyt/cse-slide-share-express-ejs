@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/commonhead') %>
+  <title>Welcome to CSE19B resourse sharing site :: developed by Montasir Mahmud</title>
+</head>
+<body>
+  <!-- start head section  -->
+  <%- include('../partials/topbar-nonlogged') %>
+  <!-- end head section  -->
+  <section class="h-[150px]"></section>
+
+  <section class="px-6 md:px-20 pb-10">
+    <h1 class="text-lg md:text-4xl font-semibold">Hey, <span class="text-indigo-400">CSE19B.</span> Always get updated.</h1>
+    <div class="px-20 mt-20">
+      <div class="flex justify-center gap-10 items-center">
+        <div class="w-40 h-40 bg-indigo-500/30 rounded-lg overflow-hidden shadow-xl flex justify-center items-center p-4">
+          <img src="/assets/images/my_notifications.svg" alt="">
+        </div>
+        <div class="flex justify-start items-center gap-2">
+          <div>
+            <h1 class="text-4xl font-bold">1.</h1>
+          </div>
+
+          <div>
+            <h1 class="text-xl font-semibold">Get <span class="text-indigo-400">Realtime</span>  Notifications</h1>
+            <p>Get notified about the latest updates of your courses, assignments, quizzes, and many more.</p>
+          </div>
+        </div>
+      </div>
+      <img src="https://picsum.photos/200/300" alt="" id="deleteme">
+      <script>
+        setTimeout(() => {
+          document.getElementById('deleteme').remove()
+        }, 5000);
+      </script>
+      <div class="flex flex-row-reverse justify-center gap-10 items-center">
+        <div class="w-40 h-40 bg-indigo-700/30 rounded-lg overflow-hidden shadow-xl flex justify-center items-center p-4">
+          <img src="/assets/images/discussion.svg" alt="">
+        </div>
+        <div class="flex justify-start items-center gap-2">
+          <div>
+            <h1 class="text-4xl font-bold">2.</h1>
+          </div>
+          <div>
+            <h1 class="text-xl font-semibold">Have <span class="text-indigo-400">confussion</span> about any event ?</h1>
+            <p>Discuss with your friend and your friends are very helpful, you'll get help instantly.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-center gap-10 items-center">
+        <div class="w-40 h-40 bg-gray-100 rounded-lg overflow-hidden shadow-xl flex justify-center items-center p-4">
+          <img src="/assets/images/class_routine.svg" alt="">
+        </div>
+        <div class="flex justify-start items-center gap-2">
+          <div>
+            <h1 class="text-4xl font-bold">3.</h1>
+          </div>
+          
+          <div>
+            <h1 class="text-xl font-semibold">Get Notified Realtime</h1>
+            <p>Get notified about the latest updates of your courses, assignments, quizzes, and many more.</p>
+          </div>
+        </div>
+      </div>
+  </section>
+
+
+  <section id="">
+    <div class="px-32 py-10 gradient-to-b">
+      <h1 class="text-3xl font-semibold w-full text-center"><span class="text-indigo-500">Q: </span> How to use ?</h1>
+      <h1 class="w-full text-center">Follow these easy steps.</h1>
+
+      <div class="flex flex-col justify-center items-center relative mt-4">
+        <div class="flex flex-col justify-center items-center">
+          <div class="bg-indigo-500 w-12 h-12 rounded-full text-2xl font-bold text-white flex justify-center items-center scale-110 relative">
+            <span>1</span>
+            <div class="absolute -left-3 -top-1 bg-indigo-500 w-2 h-3 rounded-full"></div>
+            <div class="absolute -right-2 bottom-1 bg-indigo-500 w-6 h-6 rounded-full"></div>
+            <div class="absolute -left-1 -bottom-1 bg-indigo-500 w-2 h-2 rounded-full"></div>
+
+          </div>
+          <div class="h-8 w-2 bg-indigo-500"></div>
+          <div class="bg-blue-200/30 rounded-md px-6 py-3 flex flex-col justify-center items-center">
+            <h2 class="text-lg font-semibold">Register/Sign In</h2>
+            <p>Sign In using your social accounts. It's super easy.</p>
+          </div>
+        </div>
+        <div class="h-8 w-2 bg-indigo-500"></div>
+
+        <div class="flex flex-col justify-center items-center">
+          <div class="bg-indigo-500 w-16 h-16 rounded-full text-4xl text-white flex justify-center items-center scale-110">2</div>
+          <div class="h-5 w-2 bg-indigo-500"></div>
+          <div class="bg-blue-200/30 rounded-full px-6 py-3">Enter Join Code</div>
+        </div>
+        <div class="h-5 w-2 bg-gradient-to-b from-indigo-500 to-indigo-600"></div>
+
+        <div class="flex flex-col justify-center items-center">
+          <div class="bg-indigo-600 w-16 h-16 rounded-full text-4xl text-white flex justify-center items-center scale-110">3</div>
+          <div class="h-5 w-2 bg-indigo-600"></div>
+          <div class="bg-blue-200/30 rounded-full px-6 py-3">Now you can access to resources and all features</div>
+        </div>
+        <div class="h-5 w-2 bg-gradient-to-b from-indigo-600 to-indigo-700"></div>
+
+        <div class="flex flex-col justify-center items-center">
+          <div class="bg-indigo-700 w-24 h-24 rounded-full text-2xl text-white flex justify-center items-center scale-110">Done!</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <%- include('../partials/footer') %>
+</body>
+</html>

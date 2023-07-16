@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/commonhead.ejs') %>
+  <title>CSE 19b</title>
+</head>
+<body>
+  <%- include('../partials/topbar-nonlogged') %>
+  <div class="page-area gradient-circular h-auto">
+    <section class="h-[150px]"></section>
+    <div class="w-full flex flex-col justify-center items-center p-4">
+      <div class="flex flex-col justify-center items-center gap-1">
+        <h1 class="text-3xl font-semibold">Welcome to our website</h1>
+        <h3 class="text-xl font-semibold">Sign In</h3>
+      </div>
+      
+      <div class="mt-8 flex flex-col justify-start items-start gap-1">
+        <h3>Available Signin Options:</h3>
+        <a href="/auth/google" class="bg-gray-100 w-80 px-5 py-3 rounded-md text-blue-950 flex justify-start items-center gap-2 cursor-pointer">
+          <img src="/assets/icons/google-color.svg" alt="Google"> 
+          <h1 class="font-medium">Sign In with google</h1>
+        </a>
+      </div>
+
+      <div class="mt-8 flex flex-col justify-start items-start gap-1">
+        <h3>Coming Soon:</h3>
+        <div class="bg-gray-100 w-80 px-5 py-3 rounded-md text-blue-950 flex justify-start items-center gap-2 opacity-70 cursor-not-allowed">
+          <img src="/assets/icons/facebook.svg" alt="Google"> 
+          <h1 class="font-medium">Sign In with facebook</h1>
+        </div>
+        <div class="bg-gray-100 w-80 px-5 py-3 rounded-md text-blue-950 flex justify-start items-center gap-2 opacity-70 cursor-not-allowed">
+          <img src="/assets/icons/github.svg" alt="Google"> 
+          <h1 class="font-medium">Sign In with github</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include('../partials/footer') %>
+</body>
+</html>

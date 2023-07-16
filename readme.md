@@ -1,0 +1,2 @@
+# NOW DOING
+- [x] Checkpoints
