@@ -9,7 +9,10 @@ const homeController = {
           return res.redirect("/admin");
         }
         if(req.user.checkpoint === 3) {
-          return res.render("home", {});
+          const userData = req.user;
+          return res.render("home", {
+            userData
+          });
         }
         res.redirect(checkpoints.urls[req.user.checkpoint]);
       } else {

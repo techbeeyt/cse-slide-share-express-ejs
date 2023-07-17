@@ -12,7 +12,7 @@ if (process.env.NODE_ENV !== "production") {
   });
 }
 
-const PORT = process.env.PORT || 3301;
+const PORT = process.env.PORT || 3300;
 
 const connectToDatabase = async () => {
   console.log("[database] Connecting to database..");

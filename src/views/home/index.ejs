@@ -2,25 +2,191 @@
 <html lang="en">
 <head>
   <%- include('../partials/commonhead.ejs') %>
+  <link rel="stylesheet" href="/css/swiper.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <title>CSE 19b</title>
 </head>
 <body>
   <%- include('../partials/topbar.ejs') %>
   <%- include('../partials/leftbar') %>
   <div class="page-container">
-    <div class="page-area gradient-to-b">
-      <div class="p-4">
-        <h1>Upcoming Events</h1>
-        <div>
-          Here are the upcoming events
+    <div class="page-area gradient-to-b rounded-tl-2xl">
+      <div class="p-4 flex flex-col justify-start items-start gap-6">
+        <div class="w-full">
+          <div class="flex justify-between items-center">
+            <div class="flex justify-start items-center gap-3">
+              <h1 class="text-3xl font-bold">Upcoming Events</h1>
+              <% if(userData.role === 'admin') { %>
+                <a href="/admin/events" class="text-3xl text-indigo-400 hover:text-indigo-500 active:scale-95"><i class="fa-regular fa-pen-to-square"></i></a>
+              <% } %>
+            </div>
+
+            <div class="flex justify-center items-center gap-3">
+              <button class="service-prev h-12 w-12 mb:h-8 mb:w-8 rounded-full border border-gray-400 hover:bg-[#2F6ADE] hover:text-white"><i class="fa-solid fa-arrow-left"></i></button>
+              <button class="service-next h-12 w-12 mb:h-8 mb:w-8 rounded-full border border-gray-400 hover:bg-[#2F6ADE] hover:text-white"><i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+          </div>
+          <div class="py-4">
+            <div class="swiper upcoming_events_swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="up_ev_slide">
+                    <div class='text-black/90 flex flex-col justify-center items-center gap-0'>
+                      <span class='text-lg font-semibold md:font-bold text-green-900'>{moment(data.date).date()}</span>
+                      <span class="font-extralight md:font-normal text-green-800">{moment(data.date).format('MMM')}</span>
+                    </div>
+                    <div class='h-20 w-px bg-teal-600 mx-1 md:mx-2'></div>
+                    <div class="flex flex-col justify-between items-start min-h-[100px] md:min-h-[100px]">
+                      <h2 class='text-neutral-700/90 font-normal md:font-semibold'>{data.title}</h2>
+                      <div class='text-neutral-700/90 leading-tight md:leading-normal text-sm md:text-base font-extralight md:font-normal'>{data.description?.substring(0, 55)}{data.description && (data.description?.length > 55) ? "..." : ''}</div>
+                      <div class='text-red-900 font-normal md:font-semibold mt-auto'>{daysRemaining === 0 ? `Today, ${moment(data.time).format('hh:mm a')}` : `${daysRemaining} days to go`}</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="swiper-slide">
+                  <div class="up_ev_slide">
+                    <div class='flex flex-col justify-center items-center gap-0'>
+                      <span class='text-lg font-semibold md:font-bold'>16</span>
+                      <span class="font-extralight md:font-normal">JUN</span>
+                    </div>
+                    <div class='h-20 w-px bg-teal-600 mx-1 md:mx-2'></div>
+                    <div class="flex flex-col justify-between items-start min-h-[100px] md:min-h-[100px]">
+                      <h2 class='font-normal md:font-semibold'>{data.title}</h2>
+                      <div class='leading-tight md:leading-normal text-sm md:text-base font-extralight md:font-normal'>{data.description?.substring(0, 55)}{data.description && (data.description?.length > 55) ? "..." : ''}</div>
+                      <div class='text-red-900 font-normal md:font-semibold mt-auto'>{daysRemaining === 0 ? `Today, ${moment(data.time).format('hh:mm a')}` : `${daysRemaining} days to go`}</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="swiper-slide">
+                  <div class="up_ev_slide">
+                    <div class='text-black/90 flex flex-col justify-center items-center gap-0'>
+                      <span class='text-lg font-semibold md:font-bold text-green-900'>{moment(data.date).date()}</span>
+                      <span class="font-extralight md:font-normal text-green-800">{moment(data.date).format('MMM')}</span>
+                    </div>
+                    <div class='h-20 w-px bg-teal-600 mx-1 md:mx-2'></div>
+                    <div class="flex flex-col justify-between items-start min-h-[100px] md:min-h-[100px]">
+                      <h2 class='text-neutral-700/90 font-normal md:font-semibold'>{data.title}</h2>
+                      <div class='text-neutral-700/90 leading-tight md:leading-normal text-sm md:text-base font-extralight md:font-normal'>{data.description?.substring(0, 55)}{data.description && (data.description?.length > 55) ? "..." : ''}</div>
+                      <div class='text-red-900 font-normal md:font-semibold mt-auto'>{daysRemaining === 0 ? `Today, ${moment(data.time).format('hh:mm a')}` : `${daysRemaining} days to go`}</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="swiper-slide">
+                  <div class="up_ev_slide">
+                    <div class='text-black/90 flex flex-col justify-center items-center gap-0'>
+                      <span class='text-lg font-semibold md:font-bold text-green-900'>{moment(data.date).date()}</span>
+                      <span class="font-extralight md:font-normal text-green-800">{moment(data.date).format('MMM')}</span>
+                    </div>
+                    <div class='h-20 w-px bg-teal-600 mx-1 md:mx-2'></div>
+                    <div class="flex flex-col justify-between items-start min-h-[100px] md:min-h-[100px]">
+                      <h2 class='text-neutral-700/90 font-normal md:font-semibold'>{data.title}</h2>
+                      <div class='text-neutral-700/90 leading-tight md:leading-normal text-sm md:text-base font-extralight md:font-normal'>{data.description?.substring(0, 55)}{data.description && (data.description?.length > 55) ? "..." : ''}</div>
+                      <div class='text-red-900 font-normal md:font-semibold mt-auto'>{daysRemaining === 0 ? `Today, ${moment(data.time).format('hh:mm a')}` : `${daysRemaining} days to go`}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <h1>Class Routines</h1>
         <div>
-          Here are the class routines
-        </div>
+          <h1 class="text-3xl font-bold">Class Routines</h1>
+          <div class="py-4">
+            <div class="
+              grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4
+              gap-2
+              md:gap-4
+              w-full
+            ">
+              <div class="
+                bg-gradient-to-bl from-slate-500 to-slate-600
+                px-4 py-2 
+                rounded-xl 
+                flex flex-col justify-start items-center 
+                gap-px md:gap-1 w-full md:max-w-[350px]
+              ">
+                <div class='text-indigo-200/90 flex justify-center items-center gap-[2px]'>
+                  <span class='font-normal md:font-semibold'>{moment(data.start_time).format('hh:mm A')}</span>
+                  <span class='font-normal md:font-semibold'>-</span>
+                  <span class='font-normal md:font-semibold'>{moment(data.end_time).format('hh:mm A')}</span>
+                </div>
+                <div class='h-px w-full bg-indigo-300/40'></div>
+                <div class='w-full text-indigo-200/90'>
+                  <h2 class='font-normal md:font-semibold'>{data.course_title}</h2>
+                  <div class='text-sm font-thin md:font-normal md:text-base'>Teacher: {data.teacher_name}</div>
+                  <div class='text-sm font-thin md:font-normal md:text-base'>Room: {data.room_no}</div>
+                </div>
+              </div>
+            </div>
+          </div>
       </div>
     </div>
   </div>
+
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".upcoming_events_swiper", {
+      slidesPerView: 1,
+      spaceBetween: 6,
+      navigation: {
+        nextEl: ".service-next",
+        prevEl: ".service-prev",
+      },
+      pagination: true,
+      breakpoints: {
+        "@0.00": {
+          slidesPerView: 1,
+          spaceBetween: 10,
+        },
+        "@0.75": {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        "@1.00": {
+          slidesPerView: 3,
+          spaceBetween: 20,
+        },
+        "@1.50": {
+          slidesPerView: 3,
+          spaceBetween: 20,
+        },
+      },
+    });
+
+    var clientReviewSlider = new Swiper(".clientReview", {
+      slidesPerView: 3,
+      spaceBetween: 20,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".review-next",
+        prevEl: ".review-prev",
+      },
+      breakpoints: {
+        320: {
+          slidesPerView: 1,
+          spaceBetween: 10,
+        },
+        1024: {
+          slidesPerView: 2,
+          spaceBetween: 30,
+        },
+        1920: {
+          slidesPerView: 3,
+          spaceBetween: 50,
+        },
+      },
+    });
+  </script>
 </body>
 </html>
