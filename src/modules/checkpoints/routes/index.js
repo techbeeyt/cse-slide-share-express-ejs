@@ -6,6 +6,7 @@ const checkpointsRouter = require('express').Router();
  * @route /checkpoints/join-code
  * @description Renders the join code page
  */
+
 checkpointsRouter
   .route('/join-code')
   .get(joinController.render)

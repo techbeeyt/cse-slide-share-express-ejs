@@ -100,3 +100,27 @@ button:disabled {
   duration-100
   active:scale-95
 }
+
+.table_contaner {
+  @apply w-full overflow-x-auto
+}
+
+table.data-table {
+  @apply w-full border-collapse border border-gray-800 rounded-lg overflow-auto
+}
+
+table.data-table thead {
+  @apply bg-gray-500
+}
+
+table.data-table thead tr th {
+  @apply px-4 py-2 border border-gray-700
+}
+
+table.data-table tbody tr td {
+  @apply px-4 py-2 border border-gray-500
+}
+
+table.data-table tbody tr.odd {
+  @apply bg-gray-700
+}

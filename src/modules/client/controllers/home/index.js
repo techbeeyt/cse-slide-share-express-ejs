@@ -5,9 +5,6 @@ const homeController = {
   render: (req, res) => {
     try { 
       if(req.user){
-        if(req.user.role === roles.ADMIN) {
-          return res.redirect("/admin");
-        }
         if(req.user.checkpoint === 3) {
           const userData = req.user;
           return res.render("home", {

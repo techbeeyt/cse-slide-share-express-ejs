@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/commonhead.ejs') %>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>CSE 19b</title>
+</head>
+<body>
+  <%- include('../partials/topbar.ejs') %>
+  <%- include('../partials/leftbar') %>
+  <div class="page-container">
+    <div class="page-area gradient-to-b rounded-tl-2xl">
+      <div class="p-4 flex flex-col justify-start items-start gap-4">
+        <div class="w-full">
+          <h1 class="text-3xl font-bold">Admin Panel</h1>
+          <div class="py-4 grid grid-cols-5 gap-4 ">
+            <a href="/admin/events" class="bg-gradient-to-tr from-indigo-600 to-indigo-500 py-4 md:py-6 flex flex-col gap-1 items-center justify-center rounded-md active:scale-95">
+              <span class="text-3xl"><i class="fa-regular fa-calendar-days"></i></span>
+              <span>Events</span>
+            </a>
+
+            <a href="/admin/routines" class="bg-gradient-to-tr from-indigo-600 to-indigo-500 py-4 md:py-6 flex flex-col gap-1 items-center justify-center rounded-md active:scale-95">
+              <span class="text-3xl"><i class="fa-solid fa-school"></i></span>
+              <span>Routines</span>
+            </a>
+
+            <a href="/admin/notices" class="bg-gradient-to-tr from-indigo-600 to-indigo-500 py-4 md:py-6 flex flex-col gap-1 items-center justify-center rounded-md active:scale-95">
+              <span class="text-3xl"><i class="fa-regular fa-envelope"></i></span>
+              <span>Notices</span>
+            </a>
+
+            <a href="/admin/manage" class="bg-gradient-to-tr from-indigo-600 to-indigo-500 py-4 md:py-6 flex flex-col gap-1 items-center justify-center rounded-md active:scale-95">
+              <span class="text-3xl"><i class="fa-solid fa-shield-halved"></i></i></span>
+              <span>Manage Admins</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const { runApp } = require('./app');
 const initModules = require('./initModules');
-
+const ejs = require('ejs');
 const app = runApp();
 
 // Config
@@ -36,6 +36,15 @@ connectToDatabase();
 
 // Init modules
 initModules(app);
+
+app.use("*", (req, res) => {
+  const htmlResult = `
+    We are working on this page.... <button onclick="window.history.back()">Go Back</button>
+  `
+
+  
+  res.send(ejs.render(htmlResult))
+})
 
 app.listen(PORT, () => {
   if(process.env.NODE_ENV === 'production') {

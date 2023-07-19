@@ -45,10 +45,10 @@
                 </div>
 
                 <div class="swiper-slide">
-                  <div class="up_ev_slide">
+                  <div class="up_ev_slide drop-shadow-lg">
                     <div class='flex flex-col justify-center items-center gap-0'>
-                      <span class='text-lg font-semibold md:font-bold'>16</span>
-                      <span class="font-extralight md:font-normal">JUN</span>
+                      <span class='text-lg font-semibold md:font-bold drop-shadow-2xl'>16</span>
+                      <span class="font-extralight md:font-normal drop-shadow-lg">JUN</span>
                     </div>
                     <div class='h-20 w-px bg-teal-600 mx-1 md:mx-2'></div>
                     <div class="flex flex-col justify-between items-start min-h-[100px] md:min-h-[100px]">
@@ -94,7 +94,12 @@
         </div>
 
         <div>
-          <h1 class="text-3xl font-bold">Class Routines</h1>
+          <div class="flex justify-start items-center gap-3">
+            <h1 class="text-3xl font-bold">Class Routines</h1>
+            <% if(userData.role === 'admin') { %>
+              <a href="/admin/routines" class="text-3xl text-indigo-400 hover:text-indigo-500 active:scale-95"><i class="fa-regular fa-pen-to-square"></i></a>
+            <% } %>
+          </div>
           <div class="py-4">
             <div class="
               grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4

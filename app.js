@@ -52,7 +52,6 @@ const runApp = () => {
   // don't use two lines of the above middlewares
   // they will malfunction the views and static files
 
-
   // Templating Engine
   app.set('views', './src/views');
   app.set('view engine', 'ejs');

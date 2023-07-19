@@ -5,6 +5,9 @@
     </button>
   </div>
   <div class="ml-auto flex justify-center items-center gap-5 pr-10">
+    <% if(userData?.role === 'admin'){ %>
+      <a href="/admin" class="bg-indigo-500 px-3 py-1.5 rounded-md outline outline-4 outline-indigo-500 hover:bg-transparent hover:text-indigo-200 transition-all duration-100 text-lg">Admin Panel</a>
+    <% } %>
     <a href="/user/profile" class="w-10 h-10 rounded-full overflow-hidden hover:outline hover:outline-4 hover:outline-gray-500">
       <img src="<%- userData.picture %>" alt="User">
     </a>
