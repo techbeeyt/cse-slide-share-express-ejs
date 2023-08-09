@@ -1,9 +1,15 @@
 const adminMiddlewares = {
   AuthorizeAdmin: (req, res, next) => {
-    if(req.user.role === 'admin') {
-      next();
+    const role = req.user?.role;
+    console.log(role)
+    if(role) {
+      if(req.user.role === 'admin') {
+        next();
+      } else {
+        res.status(200).send("Access Denied!");
+      }
     } else {
-      res.status(200).send("Access Denied!");
+      res.redirect('/auth/login');
     }
   } 
 }

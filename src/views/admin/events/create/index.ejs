@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../../../partials/commonhead.ejs') %>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>CSE 19b</title>
+</head>
+<body>
+  <%- include('../../../partials/topbar.ejs') %>
+  <%- include('../../../partials/leftbar') %>
+  <div class="page-container">
+    <div class="page-area gradient-circular rounded-tl-2xl">
+      <div class="flex flex-col justify-start items-start gap-4">
+        <div class="w-full">
+          <div class="flex justify-start gap-4 items-center mb-2">
+            <button class="text-2xl font-semibold" onclick="window.history.back()">
+              <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <h1 class="text-2xl font-semibold">Create Events</h1>
+          </div>
+
+          <div class="w-full flex flex-col justify-center items-center gap-4">
+            <h1 class="text-xl font-semibold">Enter New Event Info</h1>
+            <form id="create_event" class="flex flex-col justify-start items-start gap-2" method="post">
+              <div class="flex flex-col justify-start items-start gap-1">
+                <label for="title">Event Title :</label>
+                <input type="text" name="title" id="title" class="bg-white/30 px-3 py-1.5 rounded-lg w-[350px]">
+              </div>
+              <div class="flex flex-col justify-start items-start gap-1">
+                <label for="description">Description :</label>
+                <textarea name="description" id="description" class="bg-white/30 px-3 py-1.5 rounded-lg w-[350px]"></textarea>
+              </div>
+              <div class="flex flex-col justify-start items-start gap-1">
+                <label for="eventDate">Event Date :</label>
+                <input type="date" name="eventDate" id="eventDate" class="bg-white/30 px-3 py-1.5 rounded-lg w-[350px]">
+              </div>
+              <div class="flex flex-col justify-start items-start gap-1">
+                <label for="eventTime">Event Time :</label>
+                <input type="time" name="eventTime" id="eventTime" class="bg-white/30 px-3 py-1.5 rounded-lg w-[350px]">
+              </div>
+              <div class="flex flex-col justify-start items-start gap-1">
+                <label for="eventLocation">Room No : <span class="text-gray-400">(Optional)</span></label>
+                <input type="text" name="eventLocation" id="eventLocation" class="bg-white/30 px-3 py-1.5 rounded-lg w-[350px]">
+              </div>
+              <div class="flex justify-start items-center gap-1">
+                <input type="checkbox" class="h-4 w-4" id="bal" /> 
+                <label for="" class="text-lg">Associate a Class</label>
+              </div>
+
+              <div class="w-full transition-all duration-150 ease-in" id="bal_container" style="display: none;">
+                <div class="w-full">
+                  <select name="abcd" class="bg-white/30 px-3 py-1.5 rounded-lg w-[350px]">
+                    <option value="id" class="text-gray-700">Friday</option>
+                    <option value="dt" class="text-gray-500">Fytryretyriday</option>
+                    <option value="idytry" class="text-gray-500">Fryrtyriday</option>
+                    <option value="irted" class="text-gray-500">Frirtyrday</option>
+                    <option value="iyed" class="text-gray-500">Fridyeray</option>
+                  </select>
+                </div>
+              </div>
+              <button type="submit" class="bg-gradient-to-tr from-indigo-500 to-indigo-600 px-3 py-2 rounded-lg w-[350px] text-lg font-semibold transition-all duration-150 ease-in">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/js/ManipulateDOM.js"></script>
+  <script>
+    const abc = new ManipulateDOM("#bal", "#bal_container", true);
+
+
+
+    /* form validation */
+    const constrains = {
+      MAX_LENGTH: 'max_length',
+      MIN_LENGTH: 'min_length'
+    }
+    const textTypes = {
+      STRING: 'String',
+      NUMBER: 'Number',
+      EMAIL: 'Email'
+    }
+
+    const validator = {
+      MAX_LENGTH: (value, constraint) => {
+        return value.length <= constraint;
+      },
+      MIN_LENGTH: (value, constraint) => {
+        return value.length >= constraint;
+      },
+    }
+
+    const inputElementsWithDescribedValidation = {
+      formSelector: "#create_event",
+      inputsValidation: [
+        {
+          name: "title",
+          constraints: {
+            MAX_LENGTH: 20,
+            MIN_LENGTH: 6,
+          }
+        },
+        {
+          name: 'description',
+          constraints: {
+            MIN_LENGTH: 20
+          } 
+        }
+      ]
+    }
+    valueObj = {};
+    const validate = () => {
+      inputElementsWithDescribedValidation.inputsValidation.forEach((item => {
+        valueObj[item.name] = [];
+        for(constrain in item.constraints){
+          const newDiv = document.createElement('div');
+          newDiv.id = `error-msg-${item.name}-${constrain}`;
+          newDiv.innerHTML = `Error: ${constrain}`;
+          if(!validator[constrain](document.querySelector(`${inputElementsWithDescribedValidation.formSelector} [name="${item.name}"]`).value, item.constraints[constrain])){
+            if(!document.querySelector(`#error-msg-${item.name}-${constrain}`)){
+              document.querySelector(`${inputElementsWithDescribedValidation.formSelector} [name="${item.name}"]`).insertAdjacentElement("afterend", newDiv);
+            }
+          } else {
+            document.querySelectorAll(`#error-msg-${item.name}-${constrain}`).forEach(item => {
+              item.remove();
+            })
+          }
+        }
+        console.log(valueObj);
+      }))
+    }
+  </script>
+</body>
+</html>

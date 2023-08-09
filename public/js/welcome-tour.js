@@ -8,5 +8,12 @@ intro.oncomplete(() => {
     }
   }).then(res => window.location.href = "/");
 });
-intro.onexit(() => console.log('Bye!'));
+intro.onexit(() => {
+  fetch('/checkpoints/welcome-tour', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  }).then(res => window.location.href = "/");
+});
 intro.start();

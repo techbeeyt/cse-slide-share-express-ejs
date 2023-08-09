@@ -15,6 +15,7 @@ const joinController = {
 
     res.render('checkpoints/join-code', {
       userInfo,
+      userData: userInfo,
       userCount,
       allUsers,
       msg: DefinedMessage[msg]

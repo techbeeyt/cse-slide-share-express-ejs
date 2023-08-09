@@ -16,14 +16,19 @@ const eventSchema = new mongoose.Schema({
   eventDate: {
     type: Date,
     required: [true, 'Please provide a date for the event'],
+    validate: {
+      validator: function (value) {
+        return value >= new Date(); // Ensure eventDate is not in the past
+      },
+      message: 'Event date cannot be in the past',
+    },
   },
   eventTime: {
-    type: String,
+    type: Date,
     required: [true, 'Please provide a time for the event'],
   },
   eventLocation: {
     type: String,
-    required: [true, 'Please provide a location for the event'],
   },
 });
 

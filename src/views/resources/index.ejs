@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/commonhead.ejs') %>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Drive Resources | CSE 19b</title>
+</head>
+<body>
+  <%- include('../partials/topbar.ejs') %>
+  <%- include('../partials/leftbar') %>
+  <div class="page-container">
+    <div class="page-area gradient-to-b rounded-tl-2xl">
+      <div class="p-4 flex flex-col justify-start items-start gap-6">
+        <h1>Resources here...</h1>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6">
+            <% resourceData.forEach((item) => { %>
+                <a href="<%= item.mimeType.includes("folder") ? `/resources?folder_id=${item.id}` : `/resources/open?file_id=${item.id}` %>" class="flex flex-col justify-center items-center gap-2">
+                    <div>
+                        <% if(item.mimeType.includes("folder")){ %>
+                            <img src="/assets/icons/fc-folder.svg" alt="folder" class="w-8 md:w-12">
+                        <% } else if(item.mimeType.includes("image")){ %>
+                            <img src="/assets/icons/image-icon.svg" alt="folder" class="w-8 md:w-12">
+                        <% } else if(item.mimeType.includes("pdf")){ %>
+                            <img src="/assets/icons/pdf-icon.svg" alt="folder" class="w-8 md:w-12">
+                        <% } else if(item.mimeType.includes("video")){ %>
+                            <img src="/assets/icons/video-icon.svg" alt="video" class="w-8 md:w-12">
+                        <% } else if(item.mimeType.includes("document") || item.mimeType.includes("text/")){ %>
+                            <img src="/assets/icons/document-icon.svg" alt="document" class="w-8 md:w-12">
+                        <% } %>
+                    </div>
+                    <div class="text-sm font-thin"><%= item.name %></div>
+                </a>
+            <% }) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -3,7 +3,10 @@ const checkpoints = require("../../../../utils/user-checkpoint");
 
 const welcomeTourController = {
   render: (req, res) => {
-    res.render('checkpoints/welcome-tour', {});
+    const userData = req.user;
+    res.render('checkpoints/welcome-tour', {
+      userData,
+    });
   },
   completeTour: async (req, res) => {
     try { 

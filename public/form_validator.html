@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validator</title>
+</head>
+<body>
+    <form id="create_event">
+        <div>
+            <label for="">Name:</label>
+            <input type="text" name="name" />
+        </div>
+        <div>
+            <label for="">Email</label>
+            <input type="text" name="email" />
+        </div>
+
+        <div>
+            <label for="">Password</label>
+            <input type="password" name="password">
+        </div>
+        <button id="subbb">Submit</button>
+    </form>
+    <script>
+        let GLOBAL_VALID = true;
+        const validator = {
+            MAX_LENGTH: (value, constraint) => {
+                return value.length <= constraint;
+            },
+            MIN_LENGTH: (value, constraint) => {
+                return value.length >= constraint;
+            },
+            REQUIRED: (value, constraint = null) => {
+                return value.length > 0;
+            },
+            VALID_EMAIL: (value, constraint = null) => {
+                return value.length === 0 || false;
+            },
+            VALID_MOBILE: () => {
+                return false;
+            }
+        }
+
+        const validatorMessage = {
+            MAX_LENGTH: (name, constrain) => {
+                return `${name} should not exceed ${constrain} characters`;
+            },
+            MIN_LENGTH: (name, constrain) => {
+                return `${name} must be at least ${constrain} characters`;
+            },
+            REQUIRED: (name, constrain) => {
+                return `This field can not be empty.`;
+            },
+            VALID_EMAIL: (name, constrain) => {
+                return `Please enter a valid email.`;
+            },
+            VALID_MOBILE: () => {
+                return `Mobile no format is not correct.`;
+            }
+        }
+
+    const inputElementsWithDescribedValidation = {
+      formSelector: "#create_event",
+      inputsValidation: [
+        {
+          name: "name",
+          constraints: {
+            MAX_LENGTH: 20,
+            MIN_LENGTH: 6,
+          }
+        },
+        {
+          name: 'email',
+          constraints: {
+            REQUIRED: true,
+            VALID_EMAIL: true
+          } 
+        },
+        {
+            name: "password",
+            constraints: {
+                MIN_LENGTH: 8
+            }
+        }
+      ]
+    }
+    valueObj = {};
+    const validate = () => {
+      inputElementsWithDescribedValidation.inputsValidation.forEach((item => {
+        valueObj[item.name] = [];
+        for(constrain in item.constraints){
+          const newDiv = document.createElement('div');
+          newDiv.id = `error-msg-${item.name}-${constrain}`;
+          newDiv.innerHTML = `Error: ${validatorMessage[constrain](item.name, item.constraints[constrain])}`;
+          if(!validator[constrain](document.querySelector(`${inputElementsWithDescribedValidation.formSelector} [name="${item.name}"]`).value, item.constraints[constrain])){
+            if(!document.querySelector(`#error-msg-${item.name}-${constrain}`)){
+              document.querySelector(`${inputElementsWithDescribedValidation.formSelector} [name="${item.name}"]`).insertAdjacentElement("afterend", newDiv);
+            }
+          } else {
+            document.querySelectorAll(`#error-msg-${item.name}-${constrain}`).forEach(item => {
+              item.remove();
+            })
+          }
+        }
+      }))
+    }
+
+    document.getElementById('subbb').addEventListener('click', (e) => {
+        e.preventDefault();
+        validate();
+        
+    });
+
+
+
+    // const newValidator = new validateForm({
+    //     selector: '#event',
+    //     validators: {
+    //         email: {
+    //             MIN_LENGTH: 6,
+    //             MAX_LENGTH: 50,
+    //         },
+    //         password: {
+    //             MIN_LENGTH: 8
+    //         }
+    //     }
+    // })
+  </script>
+</body>
+</html>

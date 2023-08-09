@@ -10,9 +10,13 @@ adminRouter
 /**
  *  ==> '/admin/events'
  */
-
 adminRouter
   .route("/events")
   .get(eventsController.render);
+
+adminRouter
+  .route("/events/create")
+  .get(eventsController.renderCreate)
+  .post(eventsController.saveEvent)
 
 module.exports = adminRouter;
