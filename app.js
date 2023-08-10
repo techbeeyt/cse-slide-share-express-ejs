@@ -53,7 +53,7 @@ const runApp = () => {
   // they will malfunction the views and static files
 
   // Templating Engine
-  app.set('views', './src/views');
+  app.set('views', path.join(__dirname, 'src', 'views'));
   app.set('view engine', 'ejs');
 
   return app;
