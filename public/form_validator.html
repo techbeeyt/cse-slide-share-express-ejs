@@ -20,112 +20,118 @@
             <label for="">Password</label>
             <input type="password" name="password">
         </div>
-        <button id="subbb">Submit</button>
+        <button type="submit">Submit</button>
     </form>
-    <script>
-        let GLOBAL_VALID = true;
-        const validator = {
-            MAX_LENGTH: (value, constraint) => {
-                return value.length <= constraint;
-            },
-            MIN_LENGTH: (value, constraint) => {
-                return value.length >= constraint;
-            },
-            REQUIRED: (value, constraint = null) => {
-                return value.length > 0;
-            },
-            VALID_EMAIL: (value, constraint = null) => {
-                return value.length === 0 || false;
-            },
-            VALID_MOBILE: () => {
-                return false;
-            }
-        }
+  <script>
+    class Monst3rValidator {
+      constructor(initValues) {
+        this.data = {
+          formSelector: initValues?.formSelector || 'form',
+          msgColor: initValues?.msgColor || 'red',
+          fields: initValues?.fields || {} // Initialize fields as an empty object if not provided
+        };
 
-        const validatorMessage = {
-            MAX_LENGTH: (name, constrain) => {
-                return `${name} should not exceed ${constrain} characters`;
-            },
-            MIN_LENGTH: (name, constrain) => {
-                return `${name} must be at least ${constrain} characters`;
-            },
-            REQUIRED: (name, constrain) => {
-                return `This field can not be empty.`;
-            },
-            VALID_EMAIL: (name, constrain) => {
-                return `Please enter a valid email.`;
-            },
-            VALID_MOBILE: () => {
-                return `Mobile no format is not correct.`;
-            }
-        }
+        // Bind the event listener to the instance
+        this.handleFormSubmit = this.handleFormSubmit.bind(this);
 
-    const inputElementsWithDescribedValidation = {
-      formSelector: "#create_event",
-      inputsValidation: [
-        {
-          name: "name",
-          constraints: {
-            MAX_LENGTH: 20,
-            MIN_LENGTH: 6,
-          }
+        // Add the event listener immediately upon instantiation
+        document.querySelector(`${this.data.formSelector} [type="submit"]`).addEventListener('click', this.handleFormSubmit);
+      }
+
+      validator = {
+        MAX_LENGTH: (value, constraint) => {
+          return value.length <= constraint;
         },
-        {
-          name: 'email',
-          constraints: {
-            REQUIRED: true,
-            VALID_EMAIL: true
-          } 
+        MIN_LENGTH: (value, constraint) => {
+          return value.length >= constraint;
         },
-        {
-            name: "password",
-            constraints: {
-                MIN_LENGTH: 8
-            }
+        REQUIRED: (value, constraint = null) => {
+          return value.length > 0;
+        },
+        VALID_EMAIL: (value, constraint = null) => {
+          const emailRegExp = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
+          return value.length === 0 || emailRegExp.test(value);
+        },
+        VALID_MOBILE: () => {
+          return false;
         }
-      ]
-    }
-    valueObj = {};
-    const validate = () => {
-      inputElementsWithDescribedValidation.inputsValidation.forEach((item => {
-        valueObj[item.name] = [];
-        for(constrain in item.constraints){
-          const newDiv = document.createElement('div');
-          newDiv.id = `error-msg-${item.name}-${constrain}`;
-          newDiv.innerHTML = `Error: ${validatorMessage[constrain](item.name, item.constraints[constrain])}`;
-          if(!validator[constrain](document.querySelector(`${inputElementsWithDescribedValidation.formSelector} [name="${item.name}"]`).value, item.constraints[constrain])){
-            if(!document.querySelector(`#error-msg-${item.name}-${constrain}`)){
-              document.querySelector(`${inputElementsWithDescribedValidation.formSelector} [name="${item.name}"]`).insertAdjacentElement("afterend", newDiv);
+      }
+
+      validatorMessage = {
+        MAX_LENGTH: (name, constraint) => {
+          return `${name} should not exceed ${constraint} characters`;
+        },
+        MIN_LENGTH: (name, constraint) => {
+          return `${name} must be at least ${constraint} characters`;
+        },
+        REQUIRED: (name, constraint) => {
+          return `${name} cannot be empty.`;
+        },
+        VALID_EMAIL: (name, constraint) => {
+          return `Please enter a valid email.`;
+        },
+        VALID_MOBILE: (name, constraint) => {
+          return `Mobile number format is not correct.`;
+        }
+      }
+
+      __validate = () => {
+        const errorArray = [];
+
+        for (const field in this.data.fields) {
+          const constraints = this.data.fields[field];
+
+          for (const constraint in constraints) {
+            const newDiv = document.createElement('div');
+            newDiv.id = `error-msg-${field}-${constraint}`;
+            newDiv.style.color = this.data.msgColor;
+
+            const constraintValue = this.data.fields[field][constraint];
+            newDiv.innerHTML = `${this.validatorMessage[constraint](field, constraintValue)}`;
+
+            const fieldValue = document.querySelector(`${this.data.formSelector} [name="${field}"]`).value;
+            if (!this.validator[constraint](fieldValue, constraintValue)) {
+              errorArray.push(true);
+
+              if (!document.querySelector(`#error-msg-${field}-${constraint}`)) {
+                document.querySelector(`${this.data.formSelector} [name="${field}"]`).insertAdjacentElement("afterend", newDiv);
+              }
+            } else {
+              document.querySelectorAll(`#error-msg-${field}-${constraint}`).forEach(item => {
+                item.remove();
+              })
             }
-          } else {
-            document.querySelectorAll(`#error-msg-${item.name}-${constrain}`).forEach(item => {
-              item.remove();
-            })
           }
         }
-      }))
-    }
+        return !(errorArray.some(value => value));
+      }
 
-    document.getElementById('subbb').addEventListener('click', (e) => {
+      handleFormSubmit(e) {
         e.preventDefault();
-        validate();
-        
+        if (!this.__validate()) {
+          e.preventDefault();
+        }
+      }
+    }
+
+
+    const newForm = new Monst3rValidator({
+      msgColor: '#123abc',
+      fields: {
+        name: {
+          MIN_LENGTH: 8
+        },
+        email: {
+          VALID_EMAIL: true,
+          REQUIRED: true
+        },
+        password: {
+          MIN_LENGTH:7
+        },
+      }
     });
 
-
-
-    // const newValidator = new validateForm({
-    //     selector: '#event',
-    //     validators: {
-    //         email: {
-    //             MIN_LENGTH: 6,
-    //             MAX_LENGTH: 50,
-    //         },
-    //         password: {
-    //             MIN_LENGTH: 8
-    //         }
-    //     }
-    // })
+    console.log(newForm);
   </script>
 </body>
 </html>
