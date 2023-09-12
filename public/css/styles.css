@@ -539,6 +539,10 @@ video {
   position: relative;
 }
 
+.sticky {
+  position: sticky;
+}
+
 .inset-0 {
   inset: 0px;
 }
@@ -603,6 +607,18 @@ video {
   top: 1.5rem;
 }
 
+.right-10 {
+  right: 2.5rem;
+}
+
+.top-10 {
+  top: 2.5rem;
+}
+
+.top-32 {
+  top: 8rem;
+}
+
 .-z-0 {
   z-index: 0;
 }
@@ -663,6 +679,10 @@ video {
 
 .mt-auto {
   margin-top: auto;
+}
+
+.mb-10 {
+  margin-bottom: 2.5rem;
 }
 
 .flex {
@@ -751,6 +771,18 @@ video {
 
 .h-px {
   height: 1px;
+}
+
+.h-\[400px\] {
+  height: 400px;
+}
+
+.h-\[80vh\] {
+  height: 80vh;
+}
+
+.h-\[90vh\] {
+  height: 90vh;
 }
 
 .min-h-\[100px\] {
@@ -1026,6 +1058,22 @@ video {
   background-color: rgb(255 255 255 / 0.9);
 }
 
+.bg-white\/10 {
+  background-color: rgb(255 255 255 / 0.1);
+}
+
+.bg-white\/20 {
+  background-color: rgb(255 255 255 / 0.2);
+}
+
+.bg-green-300\/20 {
+  background-color: rgb(134 239 172 / 0.2);
+}
+
+.bg-indigo-300\/20 {
+  background-color: rgb(165 180 252 / 0.2);
+}
+
 .bg-gradient-to-b {
   background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
 }
@@ -1120,6 +1168,10 @@ video {
   padding: 1rem;
 }
 
+.p-2 {
+  padding: 0.5rem;
+}
+
 .px-20 {
   padding-left: 5rem;
   padding-right: 5rem;
@@ -1178,6 +1230,21 @@ video {
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.py-0 {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.py-0\.5 {
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
 }
 
 .pb-10 {
@@ -1264,6 +1331,10 @@ video {
   font-weight: 100;
 }
 
+.uppercase {
+  text-transform: uppercase;
+}
+
 .italic {
   font-style: italic;
 }
@@ -1294,11 +1365,6 @@ video {
 .text-gray-700 {
   --tw-text-opacity: 1;
   color: rgb(55 65 81 / var(--tw-text-opacity));
-}
-
-.text-gray-800 {
-  --tw-text-opacity: 1;
-  color: rgb(31 41 55 / var(--tw-text-opacity));
 }
 
 .text-green-800 {
@@ -1356,6 +1422,10 @@ video {
 
 .text-white\/90 {
   color: rgb(255 255 255 / 0.9);
+}
+
+.text-indigo-500\/30 {
+  color: rgb(99 102 241 / 0.3);
 }
 
 .opacity-70 {
@@ -1642,6 +1712,14 @@ table.data-table tbody tr.odd {
 
 .hover\:bg-transparent:hover {
   background-color: transparent;
+}
+
+.hover\:bg-white\/10:hover {
+  background-color: rgb(255 255 255 / 0.1);
+}
+
+.hover\:bg-white\/20:hover {
+  background-color: rgb(255 255 255 / 0.2);
 }
 
 .hover\:fill-indigo-500:hover {

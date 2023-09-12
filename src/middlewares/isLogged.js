@@ -1,13 +1,12 @@
+// this middleware should only check if user logged in or not
 const isLogged = (req, res, next) => {
   try {
     if(req.user) {
       console.log('[middleware, isLogged] User is logged in]');
-      if(req.user.checkpoint === 3) {
-        return next();
-      }
+      return next();
     } else {
       console.log('[middleware, isLogged] User is not logged in]');
-      req.redirect('/auth/login');
+      res.redirect('/auth/login');
     }
   } catch(error) { 
     console.log(error);

@@ -1,7 +1,5 @@
 const express = require('express');
 const path = require('path');
-const compression = require('compression');
-const helmet = require('helmet');
 const dotenv = require('dotenv');
 const passport = require('passport');
 const cookieSession = require('cookie-session');

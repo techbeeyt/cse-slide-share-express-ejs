@@ -41,8 +41,6 @@ app.use("*", (req, res) => {
   const htmlResult = `
     We are working on this page.... <button onclick="window.history.back()">Go Back</button>
   `
-
-  
   res.send(ejs.render(htmlResult))
 })
 

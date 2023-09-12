@@ -1,3 +1,4 @@
+const middlewares = require('../../../middlewares');
 const { homeController, adminController, resourceController } = require('../controllers');
 
 const clientRouter = require('express').Router();
@@ -14,6 +15,10 @@ clientRouter // "http://localhost:3300/"
 
 clientRouter
   .route("/resources")
-  .get(resourceController.render);
+  .get(middlewares.isLogged, middlewares.Checkpoint, resourceController.render);
+
+clientRouter
+  .route("/resources/open")
+  .get(middlewares.isLogged, middlewares.Checkpoint, resourceController.openFile);
 
 module.exports = clientRouter;

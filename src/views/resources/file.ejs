@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/commonhead.ejs') %>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title> | CSE 19b</title>
+</head>
+<body>
+  <%- include('../partials/topbar.ejs') %>
+  <%- include('../partials/leftbar') %>
+  <div class="page-container">
+    <div class="page-area gradient-to-b rounded-tl-2xl">
+      <div class="p-4 flex flex-col justify-start items-start gap-6">
+        <div class="flex justify-start items-center gap-4 p-4 w-full">
+          <button class="py-2 px-3 bg-white/10 hover:bg-white/20 rounded" onclick="window.history.back()">Back</button>
+          <div class="text-2xl font-bold text-indigo-200 flex justify-start items-center gap-2">
+            <%- fileData.name %>
+            <div class="bg-indigo-300/20 rounded text-sm font-thin px-2 py-0.5 flex justify-center items-center uppercase">
+              <% if(fileData.mimeType.includes("image")){ %>
+                image
+              <% } else if(fileData.mimeType.includes("pdf")){ %>
+                pdf
+              <% } else if(fileData.mimeType.includes("video")){ %>
+                video
+              <% } else if(fileData.mimeType.includes("document") || fileData.mimeType.includes("text/") || fileData.mimeType.includes("msword")){ %>
+                document
+              <% } else { %>
+                file
+              <% } %>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full h-[90vh] pb-10">
+          <div>
+            <a href="<%- fileData.webViewLink %>">Open File</a>
+          </div>
+          <iframe class="w-full rounded h-full" src="<%- fileData.webViewLink %>" title="W3Schools Free Online Web Tutorials"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="sticky top-32 right-10 z-50" onclick="">Full Screen</button>
+</body>
+</html>

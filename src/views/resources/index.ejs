@@ -11,7 +11,10 @@
   <div class="page-container">
     <div class="page-area gradient-to-b rounded-tl-2xl">
       <div class="p-4 flex flex-col justify-start items-start gap-6">
-        <h1>Resources here...</h1>
+        <div class="flex justify-start items-center gap-4 p-4 w-full">
+          <button class="py-2 px-3 bg-white/10 hover:bg-white/20 rounded" onclick="window.history.back()">Back</button>
+          <div class="text-2xl font-bold text-indigo-200">Resources</div>
+        </div>
 
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6">
             <% resourceData.forEach((item) => { %>
@@ -25,7 +28,7 @@
                             <img src="/assets/icons/pdf-icon.svg" alt="folder" class="w-8 md:w-12">
                         <% } else if(item.mimeType.includes("video")){ %>
                             <img src="/assets/icons/video-icon.svg" alt="video" class="w-8 md:w-12">
-                        <% } else if(item.mimeType.includes("document") || item.mimeType.includes("text/")){ %>
+                        <% } else if(item.mimeType.includes("document") || item.mimeType.includes("text/") || item.mimeType.includes("msword")){ %>
                             <img src="/assets/icons/document-icon.svg" alt="document" class="w-8 md:w-12">
                         <% } %>
                     </div>

@@ -1,5 +1,6 @@
 const loginController = {
   render: (req, res) => {
+    console.log(process.env.GOOGLE_CALLBACK_URL);
     res.render('auth/login', {});
   },
   googleLogin: (req, res) => {
