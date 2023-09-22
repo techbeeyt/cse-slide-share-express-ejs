@@ -17,6 +17,16 @@ adminRouter
 adminRouter
   .route("/events/create")
   .get(eventsController.renderCreate)
-  .post(eventsController.saveEvent)
+  .post(eventsController.saveEvent);
+
+adminRouter
+  .route("/events/edit/:id")
+  .get(eventsController.renderEditEvent)
+  .post(eventsController.doEditEvent);
+
+
+adminRouter
+  .route("/events/delete/:id")
+  .get(eventsController.deleteEvent);
 
 module.exports = adminRouter;

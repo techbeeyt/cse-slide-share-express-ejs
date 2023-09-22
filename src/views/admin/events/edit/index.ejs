@@ -16,7 +16,7 @@
             <button class="text-2xl font-semibold" onclick="window.history.back()">
               <i class="fa-solid fa-arrow-left"></i>
             </button>
-            <h1 class="text-2xl font-semibold">Create Events</h1>
+            <h1 class="text-2xl font-semibold">Edit Event</h1>
           </div>
 
           <% if(message){ %>
@@ -34,27 +34,27 @@
 
 
           <div class="w-full flex flex-col justify-center items-center gap-4">
-            <h1 class="text-xl font-semibold">Enter New Event Info</h1>
+            <h1 class="text-xl font-semibold">Update Event Info</h1>
             <form action="" id="create_event" class="flex flex-col justify-start items-start gap-2" method="post">
               <div class="flex flex-col justify-start items-start gap-1">
                 <label for="title">Event Title :</label>
-                <input type="text" name="title" id="title" class="bg-white/30 px-3 py-1.5 rounded-lg w-[350px]">
+                <input type="text" name="title" id="title" value="<%= event.title %>" class="bg-white/30 px-3 py-1.5 rounded-lg w-[350px]" />
               </div>
               <div class="flex flex-col justify-start items-start gap-1">
                 <label for="description">Description :</label>
-                <textarea name="description" id="description" class="bg-white/30 px-3 py-1.5 rounded-lg w-[350px]"></textarea>
+                <textarea name="description" id="description" class="bg-white/30 px-3 py-1.5 rounded-lg w-[350px]"><%= event.description %></textarea>
               </div>
               <div class="flex flex-col justify-start items-start gap-1">
                 <label for="eventDate">Event Date :</label>
-                <input type="date" name="eventDate" id="eventDate" class="bg-white/30 px-3 py-1.5 rounded-lg w-[350px]">
+                <input type="date" name="eventDate" value="<%= event.date %>" id="eventDate" class="bg-white/30 px-3 py-1.5 rounded-lg w-[350px]" />
               </div>
               <div class="flex flex-col justify-start items-start gap-1">
                 <label for="eventTime">Event Time :</label>
-                <input type="time" name="eventTime" id="eventTime" class="bg-white/30 px-3 py-1.5 rounded-lg w-[350px]">
+                <input type="time" name="eventTime" value="<%= event.time %>" id="eventTime" class="bg-white/30 px-3 py-1.5 rounded-lg w-[350px]" />
               </div>
               <div class="flex flex-col justify-start items-start gap-1">
                 <label for="eventLocation">Room No : <span class="text-gray-400">(Optional)</span></label>
-                <input type="text" name="eventLocation" id="eventLocation" class="bg-white/30 px-3 py-1.5 rounded-lg w-[350px]">
+                <input type="text" name="eventLocation" value="<%= event.location %>" id="eventLocation" class="bg-white/30 px-3 py-1.5 rounded-lg w-[350px]" />
               </div>
               <div class="flex justify-start items-center gap-1">
                 <input type="checkbox" class="h-4 w-4" id="bal" /> 
@@ -72,7 +72,7 @@
                   </select>
                 </div>
               </div>
-              <button type="submit" class="bg-gradient-to-tr from-indigo-500 to-indigo-600 px-3 py-2 rounded-lg w-[350px] text-lg font-semibold transition-all duration-150 ease-in">Submit</button>
+              <button type="submit" class="bg-gradient-to-tr from-indigo-500 to-indigo-600 px-3 py-2 rounded-lg w-[350px] text-lg font-semibold transition-all duration-150 ease-in">Update</button>
             </form>
           </div>
         </div>

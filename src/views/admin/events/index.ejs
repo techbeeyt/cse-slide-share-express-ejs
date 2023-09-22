@@ -21,35 +21,38 @@
           </div>
 
           <div class="table_container">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Event Title</th>
-                  <th>Description</th>
-                  <th>Date</th>
-                  <th>Time</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <tr>
-                  <td>HJgsd</td>
-                  <td>hjgsd</td>
-                  <td>hjgsd</td>
-                  <td>hjgsd</td>
-                  <td>sdjvhb</td>
-                </tr>
-
-                <tr class="odd">
-                  <td>HJgsd</td>
-                  <td>hjgsd</td>
-                  <td>hjgsd</td>
-                  <td>hjgsd</td>
-                  <td>sdjvhb</td>
-                </tr>
-              </tbody>
-            </table>
+            <% if(events.length === 0){ %>
+              <div class="w-full flex justify-center items-center h-32 bg-slate-700 rounded">
+                No events found!
+              </div>
+            <% } else { %>
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Event Title</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+  
+                <tbody>
+                  <% events.forEach(item => { %>
+                    <tr class="<%= item.index % 2 === 1 ? "odd" : "" %>">
+                      <td><%= item.title %></td>
+                      <td><%= item.description %></td>
+                      <td><%= item.date %></td>
+                      <td><%= item.time %></td>
+                      <td>
+                        <a href="/admin/events/edit/<%= item.id %>" class="bg-blue-600 text-white px-3 py-1 rounded">Edit</a>
+                        <a href="/admin/events/delete/<%= item.id %>" class="bg-red-600 text-white px-2 py-1 rounded">Delete</a>
+                      </td>
+                    </tr>
+                  <% }) %>
+                </tbody>
+              </table>
+            <% } %>
           </div>
         </div>
       </div>
